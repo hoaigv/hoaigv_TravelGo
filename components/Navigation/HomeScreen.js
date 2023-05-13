@@ -17,6 +17,7 @@ import UserScreen from './UserScreen';
 import ConfirmationScreen from './ConfirmationScreen';
 import LoginScreen from './LoginScreen';
 import RegisterScreen from './RegisterScreen';
+import MapScreen from './MapScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -33,6 +34,7 @@ function HomeNavigation(){
       <Stack.Screen name='Info' component={PropertyInfoScreen}/>
       <Stack.Screen name='User' component={UserScreen}/>
       <Stack.Screen name='Confirmation' component={ConfirmationScreen}/>
+      <Stack.Screen name='Map' component={MapScreen}/>
     </Stack.Navigator>
     )
 }
