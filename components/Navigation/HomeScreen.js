@@ -18,7 +18,7 @@ import ConfirmationScreen from './ConfirmationScreen';
 import LoginScreen from './LoginScreen';
 import RegisterScreen from './RegisterScreen';
 import MapScreen from './MapScreen';
-
+import CartScreen from './CartScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -35,6 +35,7 @@ function HomeNavigation(){
       <Stack.Screen name='User' component={UserScreen}/>
       <Stack.Screen name='Confirmation' component={ConfirmationScreen}/>
       <Stack.Screen name='Map' component={MapScreen}/>
+      <Stack.Screen name='Cart' component={CartScreen}/>
     </Stack.Navigator>
     )
 }
@@ -42,6 +43,7 @@ function HomeNavigation(){
 export default HomeNavigation;
 
 function HomeScreen({navigation}){
+    
     return (
     <ScrollView>
     <Image style={{width : 360 , height : 250,marginBottom : 10, padding: 0,borderRadius : 10}} source={{uri : 'https://img3.thuthuatphanmem.vn/uploads/2019/07/13/hinh-anh-thanh-pho-da-nang-dep-ve-dem_085827967.png'}}/>

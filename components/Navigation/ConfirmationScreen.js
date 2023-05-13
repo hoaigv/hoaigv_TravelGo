@@ -2,6 +2,8 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useLayoutEffect } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { AntDesign } from "@expo/vector-icons";
+import { Toast } from "react-native-toast-message/lib/src/Toast";
+
 
 const ConfirmationScreen = () => {
     const route = useRoute();
@@ -24,6 +26,16 @@ const ConfirmationScreen = () => {
         },
       });
     }, []);
+      const show1 = ()=>{
+        Toast.show({
+          type: "success",
+          text1: "Success",
+          text2: "Booking hotels sussess",
+          autoHide:true,
+          visibilityTime:2500      
+        })
+        navigation.navigate("Cart",{});
+      }
   return (
     <View>
       <Pressable style={{ backgroundColor: "white", margin: 10 }}>
@@ -56,6 +68,7 @@ const ConfirmationScreen = () => {
                   paddingVertical: 3,
                   borderRadius: 5,
                   width: 100,
+                  marginLeft:10
                 }}
               >
                 <Text
@@ -63,6 +76,7 @@ const ConfirmationScreen = () => {
                     textAlign: "center",
                     color: "white",
                     fontSize: 15,
+                    
                   }}
                 >
                   Genius Level
@@ -79,8 +93,8 @@ const ConfirmationScreen = () => {
               borderRadius: 6,
             }}
           >
-            <Text style={{ color: "white", fontSize: 13 }}>
-              Travel sustainable
+            <Text style={{ color: "white", fontSize: 13,fontWeight: "bold" }}>
+              enjoy moment !
             </Text>
           </View>
         </View>
@@ -104,7 +118,7 @@ const ConfirmationScreen = () => {
             </Text>
           </View>
 
-          <View>
+          <View style={{marginLeft:20}}>
             <Text style={{ fontSize: 16, fontWeight: "600", marginBottom: 3 }}>
               Check Out
             </Text>
@@ -125,8 +139,8 @@ const ConfirmationScreen = () => {
           </Text>
         </View>
 
-        <Pressable
-          style={{
+        <Pressable onPress={show1}
+          style={{ 
             backgroundColor: "#01877e",
             width: 120,
             padding: 5,

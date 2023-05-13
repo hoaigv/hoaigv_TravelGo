@@ -493,7 +493,7 @@ const PlacesScreen = () => {
       <Pressable  onPress = {()=>navigation.navigate("Map",{
         searchResults: searchResult
       })}
-      style={{width:50,position: 'absolute',zIndex: 100,right:0,margin:10 ,backgroundColor:"#fe7240",alignItems: 'center',padding:4,borderRadius:10}}>
+      style={{width:50,position: 'absolute',zIndex: 100,right:0,top:60,margin:10 ,backgroundColor:"#fe7240",alignItems: 'center',padding:4,borderRadius:10}}>
       <FontAwesome5 name="map-marked-alt" size={24} color="white" />
       <Text style={{color:"white"}}>Map</Text>
       </Pressable>

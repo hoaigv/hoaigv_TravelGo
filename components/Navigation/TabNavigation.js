@@ -11,7 +11,7 @@ import SearchScreen from './SearchScreen';
 import { Feather } from '@expo/vector-icons';
 const Tab = createBottomTabNavigator();
 
-export default function TabNavigation() {
+export default function TabNavigation({}) {
 
   return (
     <Tab.Navigator>
