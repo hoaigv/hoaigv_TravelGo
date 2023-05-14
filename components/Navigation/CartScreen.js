@@ -18,7 +18,7 @@ const CartScreen = () => {
       image:
         "https://eurotravel.com.vn/wp-content/uploads/2023/02/1-C5ku90hs.jpg",
       rooms: 3,
-      price: 200,
+      newPrice: 200,
       startDate: "2023-06-01",
       endDate: "2023-06-05",
     },
@@ -27,7 +27,7 @@ const CartScreen = () => {
       image:
         "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu_%28cropped%29.jpg/402px-View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu_%28cropped%29.jpg",
       rooms: 2,
-      price: 150,
+      newPrice: 150,
       startDate: "2023-07-10",
       endDate: "2023-07-15",
     },
@@ -36,7 +36,7 @@ const CartScreen = () => {
       image:
         "https://znews-photo.zingcdn.me/w1200/Uploaded/mdf_eioxrd/2020_11_16/a0002533_main.jpg",
       rooms: 1,
-      price: 100,
+      newPrice: 100,
       startDate: "2023-08-20",
       endDate: "2023-08-25",
     },
@@ -70,7 +70,7 @@ const CartScreen = () => {
             </View>
             <View style={styles.infoContainer}>
               <Text style={styles.details}>{`${booking.rooms} phòng`}</Text>
-              <Text style={styles.details}>{`${booking.price} đồng`}</Text>
+              <Text style={styles.details}>{`${booking.newPrice} đồng`}</Text>
               <Text
                 style={styles.details}
               >{`${booking.startDate}  ${booking.endDate}`}</Text>

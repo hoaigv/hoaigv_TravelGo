@@ -7,7 +7,7 @@ import { Toast } from "react-native-toast-message/lib/src/Toast";
 
 const ConfirmationScreen = () => {
     const route = useRoute();
-    
+ 
     const navigation = useNavigation();
     useLayoutEffect(() => {
       navigation.setOptions({
