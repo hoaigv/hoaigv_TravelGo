@@ -19,6 +19,8 @@ import LoginScreen from './LoginScreen';
 import RegisterScreen from './RegisterScreen';
 import MapScreen from './MapScreen';
 import CartScreen from './CartScreen';
+import ProfileScreen from './ProfileScreen';
+import EditProfileScreen from './EditProfileScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -36,6 +38,8 @@ function HomeNavigation(){
       <Stack.Screen name='Confirmation' component={ConfirmationScreen}/>
       <Stack.Screen name='Map' component={MapScreen}/>
       <Stack.Screen name='Cart' component={CartScreen}/>
+      <Stack.Screen name='Profile' component={ProfileScreen} />
+      <Stack.Screen name = 'EditProfile' component={EditProfileScreen}/>
     </Stack.Navigator>
     )
 }

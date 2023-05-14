@@ -9,6 +9,8 @@ import HomeScreen from './HomeScreen';
 import CartScreen from './CartScreen';
 import SearchScreen from './SearchScreen';
 import { Feather } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
+import ProfileScreen from './ProfileScreen';
 const Tab = createBottomTabNavigator();
 
 export default function TabNavigation({}) {
@@ -37,14 +39,25 @@ export default function TabNavigation({}) {
         ),
       }}
     />
-    <Tab.Screen
+     <Tab.Screen
       name="Tài Khoản"
-      component={Settings}
+      component={ProfileScreen}
       options={{
         headerShown: false,
         tabBarLabel: 'Tài Khoản',
         tabBarIcon: ({ color, size }) => (
-          <MaterialCommunityIcons name="account" color={color} size={size} />
+          <AntDesign name="profile" size={size} color={color} />
+        ),
+      }}
+    />
+    <Tab.Screen
+      name="Cài Đặt"
+      component={Settings}
+      options={{
+        headerShown: false,
+        tabBarLabel: 'Cài Đặt',
+        tabBarIcon: ({ color, size }) => (
+          <AntDesign name="setting" size={size} color={color} />
         ),
       }}
     />

@@ -29,6 +29,7 @@
     "react-native-maps": "0.30.2",
     "react-native-modals": "^0.22.3",
     "react-native-pager-view": "^5.4.15",
+    "react-native-paper": "^5.7.2",
     "react-native-tab-view": "^3.1.1",
     "react-native-toast-message": "^2.1.6",
     "react-native-web": "0.17.7",
