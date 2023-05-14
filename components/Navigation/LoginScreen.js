@@ -6,14 +6,50 @@ import {
     KeyboardAvoidingView,
     TextInput,
     Pressable,
+    Alert 
   } from "react-native";
   import React, { useState, useEffect } from "react";
   import { useNavigation } from "@react-navigation/native";
 
+
 const LoginScreen = () => {
+ 
+   const dataUser = {
+    email : "hm@gmail.com",
+    passs : "123"
+   }
+ 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigation = useNavigation();
+  
+    const handleEmailChange = (value) => {
+      setEmail(value);
+    };
+  
+    const handlePasswordChange = (value) => {
+      setPassword(value);
+    };
+    
+    const users = [
+      { email: 'hmhoai.20it11@vku.udn.vn', password: '123' },
+      { email: 'A', password: '2' },
+      { email: 'user3@example.com', password: 'password3' },
+    ];
+  
+    const handleSubmit = () => {
+      const user = users.find((user) => user.email === email && user.password === password);
+      if (!email || !password) {
+        Alert.alert('Error', 'Please enter your email and password');
+      } else if (!user) {
+        Alert.alert('Error', 'Incorrect email or password');
+      } else {
+        // Navigate to HomeScreen
+        navigation.navigate('TravelGO');
+      }
+    };
+    
+ 
   return (
     <SafeAreaView
       style={{
@@ -48,7 +84,8 @@ const LoginScreen = () => {
 
             <TextInput
               value={email}
-              onChangeText={(text) => setEmail(text)}
+              onChangeText={handleEmailChange}
+                
               placeholder="enter your email id"
               placeholderTextColor={"black"}
               style={{
@@ -68,7 +105,7 @@ const LoginScreen = () => {
 
             <TextInput
               value={password}
-              onChangeText={(text) => setPassword(text)}
+              onChangeText={handlePasswordChange}
               secureTextEntry={true}
               placeholder="Password"
               placeholderTextColor={"black"}
@@ -83,7 +120,7 @@ const LoginScreen = () => {
           </View>
         </View>
 
-        <Pressable
+        <Pressable onPress={handleSubmit}
           style={{
             width: 200,
             backgroundColor: "#003580",

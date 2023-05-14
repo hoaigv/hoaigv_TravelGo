@@ -11,6 +11,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { ModalPortal } from 'react-native-modals';
+import Toast from 'react-native-toast-message';
 
 const Stack = createNativeStackNavigator();
 
@@ -24,9 +25,11 @@ export default class App extends React.Component{
                 <Stack.Navigator >
                   <Stack.Screen name="Splash" component={TravelGo} options={{headerShown: false}}/>
                   <Stack.Screen name="Tabnavigation" component={TabNavigation} options={{headerShown: false}}/>
+                 
                 </Stack.Navigator>
                 </NavigationContainer>
                 <ModalPortal />
+                <Toast />
           </>
                 )
     }
