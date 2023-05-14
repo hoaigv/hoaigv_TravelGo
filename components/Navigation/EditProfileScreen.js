@@ -1,0 +1,142 @@
+import { StyleSheet, Text, View ,SafeAreaView,KeyboardAvoidingView,Pressable,TextInput, Alert} from 'react-native'
+import React ,{useState} from 'react'
+import { useNavigation, useRoute } from "@react-navigation/native";
+import { AntDesign } from '@expo/vector-icons';
+const EditProfileScreen = () => {
+    const route = useRoute();
+    
+    const [email,setEmail] = useState("");
+    const [password,setPassword] = useState("");
+    const [phone,setPhone] = useState("");
+    const register = () => {
+        if(email === "" || password === "" || phone === "" ){
+            Alert.alert(
+                "Invalid Detials",
+                "Please enter all the credentials",
+                [
+                  {
+                    text: "Cancel",
+                    onPress: () => console.log("Cancel Pressed"),
+                    style: "cancel"
+                  },
+                  { text: "OK", onPress: () => console.log("OK Pressed") }
+                ],
+                { cancelable: false }
+              );
+        }
+       
+    }
+   
+  return (
+    <SafeAreaView  style={{
+      
+       
+        flex: 1,
+        backgroundColor: "white",
+        padding: 10,
+        alignItems: "center",
+      }}>
+    <KeyboardAvoidingView style={{position: "relative",top:-60}}>
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            marginTop: 100,
+          }}
+        >
+       <View style={{flexDirection:"row"}}>
+       <AntDesign name="edit" size={24} color="#de741c" />
+          <Text style={{ color: "#de741c", fontSize: 18, fontWeight: "700",marginLeft:5     }}>
+           Edit 
+          </Text>
+       </View>
+
+          <Text style={{ marginTop: 15, fontSize: 16, fontWeight: "400" }}>
+        for  {route.params.data.name}
+          </Text>
+        </View>
+
+        <View style={{ marginTop: 50 }}>
+          <View>
+            <Text style={{ fontSize: 18, fontWeight: "600", color: "gray" }}>
+              Email
+            </Text>
+
+            <TextInput
+              value={email}
+              onChangeText={(text) => setEmail(text)}
+              placeholder={route.params.data.email}
+              placeholderTextColor={"gray"}
+              style={{
+                fontSize: email ? 18 : 18,
+                borderBottomColor: "gray",
+                borderBottomWidth: 1,
+                marginVertical: 10,
+                width: 300,
+              }}
+            />
+          </View>
+
+          <View style={{ marginTop: 15 }}>
+            <Text style={{ fontSize: 18, fontWeight: "600", color: "gray" }}>
+              Password
+            </Text>
+
+            <TextInput
+              value={password}
+              onChangeText={(text) => setPassword(text)}
+              secureTextEntry={true}
+              placeholder={route.params.data.pass}
+              placeholderTextColor={"gray"}
+              style={{
+                fontSize: password ? 18 : 18,
+                borderBottomColor: "gray",
+                borderBottomWidth: 1,
+                marginVertical: 10,
+                width: 300,
+              }}
+            />
+          </View>
+
+          <View style={{ marginTop: 15 }}>
+            <Text style={{ fontSize: 18, fontWeight: "600", color: "gray" }}>
+              Phone
+            </Text>
+
+            <TextInput
+              value={phone}
+              onChangeText={(text) => setPhone(text)}
+              placeholder={route.params.data.phone}
+              placeholderTextColor={"gray"}
+              style={{
+                fontSize: password ? 18 : 18,
+                borderBottomColor: "gray",
+                borderBottomWidth: 1,
+                marginVertical: 10,
+                width: 300,
+              }}
+            />
+          </View>
+        </View>
+
+        <Pressable
+          style={{
+            width: 200,
+            backgroundColor: "#de741c",
+            padding: 15,
+            borderRadius: 7,
+            marginTop: 50,
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
+        >
+          <Text style={{textAlign:"center",color:"white",fontSize:17,fontWeight:"bold"}}>Submit</Text>
+        </Pressable>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
+  )
+}
+
+export default EditProfileScreen
+
+const styles = StyleSheet.create({})

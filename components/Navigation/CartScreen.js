@@ -12,7 +12,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 
 const CartScreen = () => {
-  const bookings = [
+  const [bookings, setBookings] = useState([
     {
       name: "Paris",
       image:
@@ -40,7 +40,8 @@ const CartScreen = () => {
       startDate: "2023-08-20",
       endDate: "2023-08-25",
     },
-  ];
+  ]);
+
   const navigation = useNavigation();
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -59,6 +60,11 @@ const CartScreen = () => {
       },
     });
   }, []);
+  const handleCencal = (index) => {
+    const newBookings = [...bookings];
+    newBookings.splice(index, 1);
+    setBookings(newBookings);
+  };
   return (
     <View>
       <ScrollView>
@@ -84,7 +90,8 @@ const CartScreen = () => {
                   color="#f2e3e0"
                 />
               </Pressable>
-              <Pressable style={styles.button}>
+              <Pressable onPress={() => handleCencal(index)}
+              style={styles.button}>
                 <Ionicons
                   style={{ margin: 7 }}
                   name="md-trash-bin"
