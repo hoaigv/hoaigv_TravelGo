@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native'
 const FindResult = ({data,input,setInput}) => {
     const navigation = useNavigation();
     
+    
   return (
     <View style={{padding:10}}>
      <FlatList data={data} renderItem={({item}) => {

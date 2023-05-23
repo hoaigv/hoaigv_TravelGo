@@ -21,14 +21,21 @@ import MapScreen from './MapScreen';
 import CartScreen from './CartScreen';
 import ProfileScreen from './ProfileScreen';
 import EditProfileScreen from './EditProfileScreen';
+import BookFlightScreen from './BookFlightScreen';
+import SearchScreen from './SearchScreen';
+import FlightResultScreen from './FlightResultScreen';
+import DetailFlightScreen from './DetailFlightScreen';
+import BookCart from './BookCart';
+import CarResultScreen from './CarResultScreen';
+import DetailCarScreen from './DetailCarScreen';
 
 const Stack = createNativeStackNavigator();
 
 function HomeNavigation(){
     return(
     <Stack.Navigator>
-       <Stack.Screen name="Login" component={LoginScreen} options={{headerShown:false}}/>
-       <Stack.Screen name="Register" component={RegisterScreen} options={{headerShown:false}}/>
+       <Stack.Screen name="Login" component={LoginScreen} />
+       <Stack.Screen name="Register" component={RegisterScreen} />
       <Stack.Screen name="TravelGO" component={HomeScreen} />
       <Stack.Screen name="Di chuyển" component={Moving} />
       <Stack.Screen name="Find" component={FindScreen} options={{headerShown:false}}/>
@@ -40,6 +47,13 @@ function HomeNavigation(){
       <Stack.Screen name='Cart' component={CartScreen}/>
       <Stack.Screen name='Profile' component={ProfileScreen} />
       <Stack.Screen name = 'EditProfile' component={EditProfileScreen}/>
+      <Stack.Screen name = 'BookFilght' component={BookFlightScreen}/>
+      <Stack.Screen name = 'Search' component={SearchScreen}/>
+      <Stack.Screen name = 'ResultFlight' component={FlightResultScreen}/>
+      <Stack.Screen name = 'DetailFlight' component={DetailFlightScreen}/>
+      <Stack.Screen name = 'Car' component={BookCart}/>
+      <Stack.Screen name = 'CarResult' component={CarResultScreen}/>
+      <Stack.Screen name = 'CarDetail' component={DetailCarScreen}/>
     </Stack.Navigator>
     )
 }
