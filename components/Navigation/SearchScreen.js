@@ -30,7 +30,9 @@ const SearchScreen = () => {
   const [children, setChildren] = useState(0);
   const [modalVisibile, setModalVisibile] = useState(false);
   
-  
+  useLayoutEffect(() => {
+    navigation.setOptions({ headerShown: false });
+  }, [navigation]);
   const customButton = (onConfirm) => {
     return (
       <Button
@@ -100,11 +102,12 @@ const SearchScreen = () => {
               <Feather
                 name="search"
                 size={24}
-                color="black"
+                color="#2dc2ac"
                 style={{ marginRight: 10 }}
               />
               <TextInput  placeholderTextColor="black"
-              placeholder={route?.params? route.params.input : "Enter your Destiantion ..."} />
+              placeholder={route?.params? route.params.input : "Enter your Destiantion ..."}
+             />
             </Pressable>
             {/* Selected Dates */}
             <Pressable
@@ -118,7 +121,7 @@ const SearchScreen = () => {
                 paddingVertical: 15,
               }}
             >
-              <Feather name="calendar" size={20} color="black" />
+              <Feather name="calendar" size={20} color="#2dc2ac" />
               <DatePicker
                 style={{
                   with: 360,
@@ -126,6 +129,7 @@ const SearchScreen = () => {
                   borderRadius: 0,
                   borderWidth: 0,
                   borderColor: "transparent",
+                 
                 }}
                 customeStyles={{
                   placeholderText: {
@@ -171,11 +175,12 @@ const SearchScreen = () => {
               <Ionicons
                 name="person-outline"
                 size={24}
-                color="black"
+                color="#2dc2ac"
                 style={{ marginRight: 10 }}
               />
               <TextInput
-                placeholderTextColor="red"
+               
+                placeholderTextColor="#e08e78"
                 placeholder={` ${rooms} room • ${adults} adults • ${children} Children`}
               />
             </Pressable>
@@ -310,7 +315,11 @@ const SearchScreen = () => {
               style={{
                 marginBottom: 20,
                 color: "white",
-                backgroundColor: "#2D99ae",
+                backgroundColor: "white",
+                borderColor: "grat",
+                borderWidth:1,
+                margin:15,
+               
               }}
               onPress={() => setModalVisibile(!modalVisibile)}
             />

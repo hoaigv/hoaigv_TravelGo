@@ -1,10 +1,13 @@
-import { StyleSheet, Text, View ,SafeAreaView,KeyboardAvoidingView,Pressable,TextInput, Alert} from 'react-native'
-import React ,{useState} from 'react'
+import { StyleSheet, Text, View ,SafeAreaView,KeyboardAvoidingView,Pressable,TextInput, Alert, Button} from 'react-native'
+import React , { useLayoutEffect, useState }  from 'react'
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { AntDesign } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 const EditProfileScreen = () => {
     const route = useRoute();
-    
+    const navigation = useNavigation();
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
     const [phone,setPhone] = useState("");
@@ -51,16 +54,19 @@ const EditProfileScreen = () => {
           </Text>
        </View>
 
-          <Text style={{ marginTop: 15, fontSize: 16, fontWeight: "400" }}>
+          <Text style={{ marginTop: 5, fontSize: 16, fontWeight: "400" }}>
         for  {route.params.data.name}
           </Text>
         </View>
 
         <View style={{ marginTop: 50 }}>
           <View>
-            <Text style={{ fontSize: 18, fontWeight: "600", color: "gray" }}>
-              Email
+           <View style={{ flexDirection:"row",alignItems: "center" }}>
+           <MaterialIcons name="email" size={24} color="#de741c" />
+           <Text style={{ fontSize: 18, fontWeight: "600", color: "gray",marginLeft:5}}>
+               Your Email :
             </Text>
+           </View>
 
             <TextInput
               value={email}
@@ -78,9 +84,12 @@ const EditProfileScreen = () => {
           </View>
 
           <View style={{ marginTop: 15 }}>
-            <Text style={{ fontSize: 18, fontWeight: "600", color: "gray" }}>
-              Password
-            </Text>
+            <View style={{ flexDirection:"row",alignItems: "center" }}>
+            <MaterialCommunityIcons name="form-textbox-password" size={24} color="#de741c" />
+            <Text style={{ fontSize: 18, fontWeight: "600", color: "gray",marginLeft:5}}>
+                  Your PassWord :
+              </Text>
+            </View>
 
             <TextInput
               value={password}
@@ -99,9 +108,12 @@ const EditProfileScreen = () => {
           </View>
 
           <View style={{ marginTop: 15 }}>
-            <Text style={{ fontSize: 18, fontWeight: "600", color: "gray" }}>
-              Phone
+          <View style={{ flexDirection:"row",alignItems: "center" }}>
+          <Entypo name="phone" size={24} color="#de741c" />
+           <Text style={{ fontSize: 18, fontWeight: "600", color: "gray",marginLeft:5}}>
+                Phone Number :
             </Text>
+           </View>
 
             <TextInput
               value={phone}

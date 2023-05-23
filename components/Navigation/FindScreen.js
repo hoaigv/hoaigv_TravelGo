@@ -5,7 +5,7 @@ import FindResult from "../Items/FindResult";
 
 const FindScreen = () => {
     const [input,setInput] = useState("");
-    
+    console.log(input);
     const data = [
       {
         id: "0",
