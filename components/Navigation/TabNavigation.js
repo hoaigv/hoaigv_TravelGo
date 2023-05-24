@@ -11,6 +11,8 @@ import SearchScreen from './SearchScreen';
 import { Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import ProfileScreen from './ProfileScreen';
+import Cart from './CartScreen';
+import { Entypo } from '@expo/vector-icons';
 const Tab = createBottomTabNavigator();
 
 export default function TabNavigation({}) {
@@ -58,6 +60,18 @@ export default function TabNavigation({}) {
         tabBarLabel: 'Cài Đặt',
         tabBarIcon: ({ color, size }) => (
           <AntDesign name="setting" size={size} color={color} />
+        ),
+      }}
+    />
+     <Tab.Screen
+      name="Cart"
+      component={Cart}
+      options={{
+        headerShown: false,
+        tabBarLabel: 'Cart',
+        tabBarIcon: ({ color, size }) => (
+          <Entypo name="shopping-cart"size={size} color={color} />
+          
         ),
       }}
     />
