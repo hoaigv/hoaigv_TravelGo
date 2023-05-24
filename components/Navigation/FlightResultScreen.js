@@ -31,7 +31,7 @@ const FlightResultScreen = () => {
     {
       id: 2,
       name: 'American Airlines',
-      img: 'https://www.noupe.com/wp-content/uploads/2020/02/turkishairlineslogo.png',
+      img: 'https://1000logos.net/wp-content/uploads/2016/10/American-Airlines-Logo-800x500.png',
       startPoint: 'New York City',
       endPoint: 'Los Angeles',
       time: '10:00 AM',
