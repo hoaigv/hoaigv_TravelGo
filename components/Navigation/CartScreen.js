@@ -152,19 +152,31 @@ const CartScreen = () => {
   const [showListFlights, setShowListFlights] = useState(false);
   const [showListCar, setShowListCar] = useState(false);
   const showHotels = () => {
-    setShowListHotels(true);
-    setShowListFlights(false);
-    setShowListCar(false);
+    if (selectedItem === null) {
+      setShowListHotels(true);
+      setShowListFlights(false);
+      setShowListCar(false);
+    } else {
+      alert("Please close the current task!");
+    }
   };
   const showFlights = () => {
-    setShowListHotels(false);
-    setShowListFlights(true);
-    setShowListCar(false);
+    if (selectedItem === null) {
+      setShowListHotels(false);
+      setShowListFlights(true);
+      setShowListCar(false);
+    } else {
+      alert("Please close the current task!");
+    }
   };
   const showCar = () => {
-    setShowListHotels(false);
-    setShowListFlights(false);
-    setShowListCar(true);
+    if (selectedItem === null) {
+      setShowListHotels(false);
+      setShowListFlights(false);
+      setShowListCar(true);
+    } else {
+      alert("Please close the current task!");
+    }
   };
   const [selectedItem, setSelectedItem] = useState(null);
   const handleSelectItem = (item) => {
@@ -176,26 +188,15 @@ const CartScreen = () => {
     return (
       <>
         <Pressable onPress={() => handleSelectItem(item)}>
-          <View
-            style={{
-              flexDirection: "row",
-              padding: 5,
-              alignItems: "center",
-              borderBottomColor: "gray",
-              borderBottomWidth: 1,
-            }}
-          >
+          <View style={styles.itemList}>
             <View style={{ flex: 1 }}>
-              <Image
-                source={{ uri: item.img }}
-                style={{ width: 70, height: 50 }}
-              />
+              <Image source={{ uri: item.img }} style={styles.imgItemList} />
             </View>
-            <View style={{ flex: 2 }}>
+            <View style={styles.detailItemList}>
               <View style={{ flexDirection: "row" }}>
                 <Text>
-                  {item.name.length > 8
-                    ? item.name.substr(0, 8) + "..."
+                  {item.name.length > 7
+                    ? item.name.substr(0, 7) + "..."
                     : item.name}
                 </Text>
                 <Text style={{ color: "gray", fontSize: 13, marginLeft: 5 }}>
@@ -204,47 +205,69 @@ const CartScreen = () => {
               </View>
               <Text style={{ color: "gray", fontSize: 13 }}>{item.date}</Text>
             </View>
-            <View
-              style={{
-                flex: 1,
-                alignItems: "center",
-                backgroundColor: "black",
-                margin: 3,
-                padding: 2,
-              }}
-            >
-              <Text style={{ color: "white" }}>${item.price}</Text>
+            <View style={styles.buttomItemList}>
+              <Text style={{ color: "white", fontWeight: "bold" }}>
+                ${item.price}
+              </Text>
             </View>
           </View>
         </Pressable>
 
         {selectedItem && selectedItem.id === item.id && showListFlights && (
-          <View
-            style={{
-              width: "100%",
-              height: 200,
-              backgroundColor: "white",
-              position: "relative",
-            }}
-          >
-            <View style={{position: "relative"}}>
-              <Text style={{fontSize:16,fontWeight: "bold"}}>Detail about booking :</Text>
+          <View style={styles.desInfoItem}>
+            <View style={{ position: "relative" }}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Image
+                  source={{ uri: item.img }}
+                  style={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: 25,
+                    marginHorizontal: 5,
+                  }}
+                />
+                <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+                  {item.name}
+                </Text>
+              </View>
               <Text>
-                {item.name}I am ChatGPT, a large language model trained by
-                OpenAI based on the GPT-3.5 architecture
+                I am ChatGPT, a large language model trained by OpenAI based on
+                the GPT-3.5 architecture
               </Text>
             </View>
-            <View style={{ flexDirection: "row" ,position:"absolute",bottom:15,left:10}}>
+            <View
+              style={{
+                flexDirection: "row",
+                position: "absolute",
+                width: "100%",
+                justifyContent: "center",
+                padding: 5,
+                bottom: 5,
+              }}
+            >
               <Pressable style={styles.detailButoon}>
-                <Text style={{color:"white"}} >Pay</Text>
+                <Entypo name="paypal" size={24} color="white" />
+                <Text style={{ color: "white" }}>Pay</Text>
               </Pressable>
-              <Pressable onPress={() => handleCancelOrderFlight(item.id)}
-              style={styles.detailButoon}>
-                <Text style={{color:"white"}}  >cancel order</Text>
+              <Pressable
+                onPress={() => handleCancelOrderFlight(item.id)}
+                style={styles.detailButoon}
+              >
+                <Ionicons name="md-trash-bin" size={24} color="white" />
+                <Text style={{ color: "white" }}>cancel order</Text>
               </Pressable>
-              <Pressable onPress={() => setSelectedItem(null)}
-              style={styles.detailButoon}>
-                <Text style={{color:"white"}} >close</Text>
+              <Pressable
+                onPress={() => setSelectedItem(null)}
+                style={styles.detailButoon}
+              >
+                <Ionicons name="close-circle" size={24} color="white" />
+                <Text style={{ color: "white" }}>close</Text>
               </Pressable>
             </View>
           </View>
@@ -252,32 +275,16 @@ const CartScreen = () => {
       </>
     );
   };
-  const handleCancelOrderFlight = (itemId) => {
-         const newList = bookingFlights.filter((item)=>item.id != itemId);
-         setBookingFlights(newList);
-         setSelectedItem(null);
-  } 
   const renderHotelsItem = ({ item }) => {
     if (item == null) return null;
     return (
       <>
         <Pressable onPress={() => handleSelectItem(item)}>
-          <View
-            style={{
-              flexDirection: "row",
-              padding: 5,
-              alignItems: "center",
-              borderBottomColor: "gray",
-              borderBottomWidth: 1,
-            }}
-          >
+          <View style={styles.itemList}>
             <View style={{ flex: 1 }}>
-              <Image
-                source={{ uri: item.img }}
-                style={{ width: 70, height: 50 }}
-              />
+              <Image source={{ uri: item.img }} style={styles.imgItemList} />
             </View>
-            <View style={{ flex: 2 }}>
+            <View style={styles.detailItemList}>
               <View style={{ flexDirection: "row" }}>
                 <Text>
                   {item.name.length > 8
@@ -292,48 +299,68 @@ const CartScreen = () => {
                 {item.startDate}_{item.endDate}
               </Text>
             </View>
-            <View
-              style={{
-                flex: 1,
-                alignItems: "center",
-                backgroundColor: "black",
-                margin: 3,
-                padding: 2,
-              }}
-            >
-              <Text style={{ color: "white" }}>
+            <View style={styles.buttomItemList}>
+              <Text style={{ color: "white", fontWeight: "bold" }}>
                 ${item.room * item.newPrice}
               </Text>
             </View>
           </View>
         </Pressable>
         {selectedItem && selectedItem.id === item.id && showListHotels && (
-          <View
-            style={{
-              width: "100%",
-              height: 200,
-              backgroundColor: "white",
-              position: "relative",
-            }}
-          >
-            <View style={{position: "relative"}}>
-              <Text style={{fontSize:16,fontWeight: "bold"}}>Detail about booking :</Text>
+          <View style={styles.desInfoItem}>
+            <View style={{ position: "relative" }}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Image
+                  source={{ uri: item.img }}
+                  style={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: 25,
+                    marginHorizontal: 5,
+                  }}
+                />
+                <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+                  {item.name}
+                </Text>
+              </View>
               <Text>
-                {item.name}I am ChatGPT, a large language model trained by
-                OpenAI based on the GPT-3.5 architecture
+                I am ChatGPT, a large language model trained by OpenAI based on
+                the GPT-3.5 architecture
               </Text>
             </View>
-            <View style={{ flexDirection: "row" ,position:"absolute",bottom:15,left:10}}>
+            <View
+              style={{
+                flexDirection: "row",
+                position: "absolute",
+                width: "100%",
+                justifyContent: "center",
+                padding: 5,
+                bottom: 5,
+              }}
+            >
               <Pressable style={styles.detailButoon}>
-                <Text style={{color:"white"}} >Pay</Text>
+                <Entypo name="paypal" size={24} color="white" />
+                <Text style={{ color: "white" }}>Pay</Text>
               </Pressable>
-              <Pressable onPress={() => handleCancelOrderHotel(item.id)}
-               style={styles.detailButoon}>
-                <Text style={{color:"white"}}  >cancel order</Text>
+              <Pressable
+                onPress={() => handleCancelOrderHotel(item.id)}
+                style={styles.detailButoon}
+              >
+                <Ionicons name="md-trash-bin" size={24} color="white" />
+                <Text style={{ color: "white" }}>cancel order</Text>
               </Pressable>
-              <Pressable onPress={() => setSelectedItem(null)}
-              style={styles.detailButoon}>
-                <Text style={{color:"white"}} >close</Text>
+              <Pressable
+                onPress={() => setSelectedItem(null)}
+                style={styles.detailButoon}
+              >
+                <Ionicons name="close-circle" size={24} color="white" />
+                <Text style={{ color: "white" }}>close</Text>
               </Pressable>
             </View>
           </View>
@@ -341,95 +368,114 @@ const CartScreen = () => {
       </>
     );
   };
-  const handleCancelOrderHotel = (itemId) => {
-    const newList = bookingHotels.filter((item)=>item.id != itemId);
-    setBookingHotels(newList);
-    setSelectedItem(null);
-} 
   const renderCarItem = ({ item }) => {
     if (item == null) return null;
     return (
-   <>
-       <Pressable onPress={() => handleSelectItem(item)}>
-        <View
-          style={{
-            flexDirection: "row",
-            padding: 5,
-            alignItems: "center",
-            borderBottomColor: "gray",
-            borderBottomWidth: 1,
-          }}
-        >
-          <View style={{ flex: 1 }}>
-            <Image
-              source={{ uri: item.img }}
-              style={{ width: 70, height: 50 }}
-            />
-          </View>
-          <View style={{ flex: 2 }}>
-            <View style={{ flexDirection: "row" }}>
-              <Text>
-                {item.name.length > 5
-                  ? item.name.substr(0, 5) + "..."
-                  : item.name}
-              </Text>
-              <Text style={{ color: "gray", fontSize: 13, marginLeft: 5 }}>
-                ({item.place})
+      <>
+        <Pressable onPress={() => handleSelectItem(item)}>
+          <View style={styles.itemList}>
+            <View style={{ flex: 1 }}>
+              <Image source={{ uri: item.img }} style={styles.imgItemList} />
+            </View>
+            <View style={styles.detailItemList}>
+              <View style={{ flexDirection: "row" }}>
+                <Text>
+                  {item.name.length > 5
+                    ? item.name.substr(0, 5) + "..."
+                    : item.name}
+                </Text>
+                <Text style={{ color: "gray", fontSize: 13, marginLeft: 5 }}>
+                  ({item.place})
+                </Text>
+              </View>
+            </View>
+            <View style={styles.buttomItemList}>
+              <Text style={{ color: "white", fontWeight: "bold" }}>
+                ${item.price}
               </Text>
             </View>
           </View>
-          <View
-            style={{
-              flex: 1,
-              alignItems: "center",
-              backgroundColor: "black",
-              margin: 3,
-              padding: 2,
-            }}
-          >
-            <Text style={{ color: "white" }}>${item.price}</Text>
-          </View>
-        </View>
-      </Pressable>
-      {selectedItem && selectedItem.id === item.id && showListCar && (
-          <View
-            style={{
-              width: "100%",
-              height: 200,
-              backgroundColor: "white",
-              position: "relative",
-            }}
-          >
-            <View style={{position: "relative"}}>
-              <Text style={{fontSize:16,fontWeight: "bold"}}>Detail about booking :</Text>
+        </Pressable>
+        {selectedItem && selectedItem.id === item.id && showListCar && (
+          <View style={styles.desInfoItem}>
+            <View style={{ position: "relative" }}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Image
+                  source={{ uri: item.img }}
+                  style={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: 25,
+                    marginHorizontal: 5,
+                  }}
+                />
+                <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+                  {item.name}
+                </Text>
+              </View>
               <Text>
-                {item.name}I am ChatGPT, a large language model trained by
-                OpenAI based on the GPT-3.5 architecture
+                I am ChatGPT, a large language model trained by OpenAI based on
+                the GPT-3.5 architecture
               </Text>
             </View>
-            <View style={{ flexDirection: "row" ,position:"absolute",bottom:15,left:10}}>
+            <View
+              style={{
+                flexDirection: "row",
+                position: "absolute",
+                width: "100%",
+                justifyContent: "center",
+                padding: 5,
+                bottom: 5,
+              }}
+            >
               <Pressable style={styles.detailButoon}>
-                <Text style={{color:"white"}} >Pay</Text>
+                <Entypo name="paypal" size={24} color="white" />
+                <Text style={{ color: "white" }}>Pay</Text>
               </Pressable>
-              <Pressable    onPress={() => handleCancelOrderCar(item.id)}
-               style={styles.detailButoon}>
-                <Text style={{color:"white"}}  >cancel order</Text>
+              <Pressable
+                onPress={() => handleCancelOrderCar(item.id)}
+                style={styles.detailButoon}
+              >
+                <Ionicons name="md-trash-bin" size={24} color="white" />
+                <Text style={{ color: "white" }}>cancel order</Text>
               </Pressable>
-              <Pressable onPress={() => setSelectedItem(null)}
-              style={styles.detailButoon}>
-                <Text style={{color:"white"}} >close</Text>
+              <Pressable
+                onPress={() => setSelectedItem(null)}
+                style={styles.detailButoon}
+              >
+                <Ionicons name="close-circle" size={24} color="white" />
+                <Text style={{ color: "white" }}>close</Text>
               </Pressable>
             </View>
           </View>
         )}
-   </>
+      </>
     );
   };
+  const handleCancelOrderFlight = (itemId) => {
+    const newList = bookingFlights.filter((item) => item.id != itemId);
+    setBookingFlights(newList);
+    setSelectedItem(null);
+  };
+
+  const handleCancelOrderHotel = (itemId) => {
+    const newList = bookingHotels.filter((item) => item.id != itemId);
+    setBookingHotels(newList);
+    setSelectedItem(null);
+  };
+
   const handleCancelOrderCar = (itemId) => {
-    const newList = bookingCar.filter((item)=>item.id != itemId);
+    const newList = bookingCar.filter((item) => item.id != itemId);
     setBookingCar(newList);
     setSelectedItem(null);
-} 
+  };
+
   const getItemCount = (data) => {
     return data.length;
   };
@@ -460,20 +506,29 @@ const CartScreen = () => {
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        <View style={styles.item}>
-          <Pressable onPress={() => showHotels()} style={styles.tag}>
-            <FontAwesome5 name="hotel" size={24} color="white" />
-            <Text style={styles.textTitle}>Hotels Cart</Text>
-            <Entypo
-              style={styles.arrowIcon}
-              name="select-arrows"
-              size={24}
-              color="white"
-            />
+        <View style={styles.itemCart}>
+        <Pressable onPress={() => showHotels()} style={styles.tag}>
+            <FontAwesome5 name="hotel" size={20} color="black"  style={ showListHotels && styles.textTitle} />
+            <Text style={ showListHotels && styles.textTitle}>Hotels Cart</Text>
           </Pressable>
-          {showListHotels && (
-            <VirtualizedList
-              style={{ height: 200 }}
+         
+        </View>
+        <View style={styles.itemCart}>
+        <Pressable onPress={() => showFlights()} style={styles.tag}>
+            <FontAwesome5 name="plane-departure" size={20} color="black" style={ showListFlights && styles.textTitle} />
+            <Text style={ showListFlights && styles.textTitle}>Flights Cart</Text>
+          </Pressable>
+        </View>
+        <View style={styles.itemCart}>
+        <Pressable onPress={() => showCar()} style={styles.tag}>
+            <Fontisto name="taxi" size={20} color="black" style={ showListCar && styles.textTitle}/>
+            <Text style={ showListCar && styles.textTitle}>Re.Car Cart</Text>
+          </Pressable>
+        </View>
+      </View>
+      <View style={styles.listView}>    
+      {showListHotels && (
+            <VirtualizedList 
               data={bookingHotels}
               renderItem={renderHotelsItem}
               getItemCount={getItemCount}
@@ -481,21 +536,9 @@ const CartScreen = () => {
               keyExtractor={keyExtractor}
             />
           )}
-        </View>
-        <View style={styles.item}>
-          <Pressable onPress={() => showFlights()} style={styles.tag}>
-            <FontAwesome5 name="plane-departure" size={24} color="white" />
-            <Text style={styles.textTitle}>Flights Cart</Text>
-            <Entypo
-              style={styles.arrowIcon}
-              name="select-arrows"
-              size={24}
-              color="white"
-            />
-          </Pressable>
           {showListFlights && (
             <VirtualizedList
-              style={{ height: 200 }}
+             style={[{ height: 380 },styles.listItem]}
               data={bookingFlights}
               renderItem={renderFlightsItem}
               getItemCount={getItemCount}
@@ -503,21 +546,9 @@ const CartScreen = () => {
               keyExtractor={keyExtractor}
             />
           )}
-        </View>
-        <View style={styles.item}>
-          <Pressable onPress={() => showCar()} style={styles.tag}>
-            <Fontisto name="taxi" size={24} color="white" />
-            <Text style={styles.textTitle}>Rental Car Cart</Text>
-            <Entypo
-              style={styles.arrowIcon}
-              name="select-arrows"
-              size={24}
-              color="white"
-            />
-          </Pressable>
           {showListCar && (
             <VirtualizedList
-              style={{ height: 200 }}
+             style={[{ height: '100%'},styles.listItem]}
               data={bookingCar}
               renderItem={renderCarItem}
               getItemCount={getItemCount}
@@ -525,7 +556,6 @@ const CartScreen = () => {
               keyExtractor={keyExtractor}
             />
           )}
-        </View>
       </View>
     </SafeAreaView>
   );
@@ -534,36 +564,78 @@ const CartScreen = () => {
 export default CartScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    margin: 10,
-    justifyContent: "center",
+  container :{
+   flexDirection:"row",
+   width: "100%",
+   alignItems: "center",
+   justifyContent: "center",
+   marginTop: 5,
+  
   },
-  item: {
-    marginBottom: 7,
+  itemCart :{
+   flex:1,
   },
-  tag: {
+  tag :{
+    flexDirection:"column",
+    alignItems: "center",
+    justifyContent: "center", 
+  },
+  textTitle:{
+   color: "#4882bb",
+   fontWeight: "bold",  
+  },
+  listView:{
+  width: "100%",
+  height: "90%",
+  padding:10
+  },
+ 
+  itemList: {
     flexDirection: "row",
+    padding: 3,
+    alignItems: "center",
+    borderColor: "#a15d98",
+    borderWidth: 1,
+    borderRadius: 5,
+    marginVertical: 5,
+    backgroundColor:"#fff",
+  },
+  imgItemList: {
+    width: 70,
+    height: 70,
+    borderRadius: 50,
+    borderColor: "#4882bb",
+    borderWidth: 1,
+  },
+  buttomItemList: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#4882bb",
+    margin: 3,
+    padding: 5,
+    borderRadius: 3,
+  },
+  detailItemList: {
+    flex: 2,
+    overflow: "hidden",
+    paddingVertical: 5,
+  },
+  desInfoItem: {
+    width: "100%",
+    height: 200,
+    backgroundColor: "white",
     position: "relative",
-    backgroundColor: "#0c5776",
-    padding: 10,
+    borderColor: "#e5cee0",
+    borderWidth: 1,
+    borderRadius: 5,
+    padding: 5,
   },
-  currentSate: {
-    backgroundColor: "#2dc2ac",
+  detailButoon: {
+    backgroundColor: "black",
+    marginLeft: 15,
+    flexDirection: "row",
+    padding: 5,
+    borderRadius: 5,
   },
-  textTitle: {
-    color: "white",
-    marginLeft: 20,
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-  arrowIcon: {
-    position: "absolute",
-    right: 5,
-    top: 10,
-  },
-  detailButoon:{
-    backgroundColor:'black',
-    marginHorizontal:10,
-    padding:10,
-  }
 });
